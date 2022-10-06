@@ -29,7 +29,7 @@ type LeaderAcquired struct{}
 
 // String obtains a textual representation of the LeaderAcquired event.
 func (e LeaderAcquired) String() string {
-	return fmt.Sprint("LeaderAcquired[]")
+	return "LeaderAcquired[]"
 }
 
 // LeaderRevoked is emitted when the leader status has been revoked.
@@ -40,7 +40,7 @@ type LeaderRevoked struct{}
 
 // String obtains a textual representation of the LeaderRevoked event.
 func (e LeaderRevoked) String() string {
-	return fmt.Sprint("LeaderRevoked[]")
+	return "LeaderRevoked[]"
 }
 
 // LeaderFenced is emitted when a suspected network partition occurs, and the leader voluntarily fences itself.
@@ -52,5 +52,5 @@ type LeaderFenced struct{}
 
 // String obtains a textual representation of the LeaderFenced event.
 func (e LeaderFenced) String() string {
-	return fmt.Sprint("LeaderFenced[]")
+	return "LeaderFenced[]"
 }

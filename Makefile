@@ -5,7 +5,7 @@ all: test lint
 build: dirs
 	go build -race -o bin ./...
 
-test: dirs
+test: dirs lint
 	go test ./... -race -count=1 -coverprofile=bin/coverage.out
 
 soaktest: dirs
@@ -21,7 +21,8 @@ dirs:
 	mkdir -p bin
 
 lint:
-	golint ./...
+	staticcheck -checks=all ./...
+	govulncheck ./...
 
 clean:
 	rm -rf bin

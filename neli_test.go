@@ -591,12 +591,6 @@ func TestPulserWithError(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
-func intEqual(expected int, intSupplier func() int) func(t check.Tester) {
-	return func(t check.Tester) {
-		assert.Equal(t, expected, intSupplier())
-	}
-}
-
 func atLeast(min int, f func() int) check.Assertion {
 	return func(t check.Tester) {
 		assert.GreaterOrEqual(t, f(), min)
@@ -612,12 +606,6 @@ func isTrue(f func() bool) check.Assertion {
 func isFalse(f func() bool) check.Assertion {
 	return func(t check.Tester) {
 		assert.False(t, f())
-	}
-}
-
-func isNotNil(f func() interface{}) check.Assertion {
-	return func(t check.Tester) {
-		assert.NotNil(t, f())
 	}
 }
 

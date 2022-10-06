@@ -55,7 +55,7 @@ func (c MockConfig) Validate() error {
 	)
 }
 
-// Obtains a textual representation of the configuration.
+// String obtains a textual representation of the configuration.
 func (c MockConfig) String() string {
 	return fmt.Sprint("MockConfig[MinPollInterval=", c.MinPollInterval, "]")
 }

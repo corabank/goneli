@@ -293,7 +293,7 @@ func (n *neli) tryPulse() (bool, error) {
 					// If we were previously the leeder, need to make sure that we are still receiving heartbeats.
 					// This enables us to detect network partitions and broker failures.
 					lastReceived := time.Unix(0, n.lastReceived.Get())
-					if elapsed := time.Now().Sub(lastReceived); elapsed > *n.config.HeartbeatTimeout {
+					if elapsed := time.Since(lastReceived); elapsed > *n.config.HeartbeatTimeout {
 						n.logger().I()("Fenced leader (heartbeat timed out)")
 						n.isLeader.Set(0)
 						n.barrier(LeaderFenced{})

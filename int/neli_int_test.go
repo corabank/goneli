@@ -142,7 +142,7 @@ func countLeaders(ns []Neli, nsMutex *sync.Mutex) int {
 func sleepWithDeadline(duration time.Duration) {
 	beforeSleep := time.Now()
 	time.Sleep(duration)
-	if elapsed := time.Now().Sub(beforeSleep); elapsed > 2*duration {
+	if elapsed := time.Since(beforeSleep); elapsed > 2*duration {
 		scr.W()("Sleep deadline exceeded; expected %v but slept for %v", duration, elapsed)
 	}
 }
@@ -151,9 +151,7 @@ func installSigQuitHandler() {
 	sig := make(chan os.Signal, 1)
 	go func() {
 		signal.Notify(sig, syscall.SIGQUIT)
-		select {
-		case <-sig:
-			scr.I()("Stack\n%s", diags.DumpAllStacks())
-		}
+		<-sig
+		scr.I()("Stack\n%s", diags.DumpAllStacks())
 	}()
 }
