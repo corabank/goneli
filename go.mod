@@ -1,4 +1,4 @@
-module github.com/obsidiandynamics/goneli
+module github.com/corabank/goneli
 
 go 1.19
 
